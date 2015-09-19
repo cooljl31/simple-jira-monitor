@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
-    "request": "<2.16.0",
-    "oauth": "^0.9.11"
+    "express-handlebars": "^2.0.1",
+    "oauth": "^0.9.11",
+    "request": "<2.16.0"
   }
 }
