@@ -1,0 +1,16 @@
+{
+  "name": "simple-jira-monitor",
+  "version": "0.0.0",
+  "description": "Simple JIRA monitor showing statuses from Agile Board",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wojciech Grabowski",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "request": "<2.16.0",
+    "oauth": "^0.9.11"
+  }
+}
