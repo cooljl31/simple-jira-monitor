@@ -2,6 +2,7 @@
 
 var express = require('express');
 var JiraApi = require('./lib/jira').JiraApi;
+var dataParser = require('./lib/dataParser');
 var expressHbs = require('express-handlebars');
 var config = {
     jira: require('./config/jira.json'),
@@ -19,7 +20,15 @@ var jira = new JiraApi('https', config.jira.host, config.jira.port, config.jira.
 app.get('/monitor/view/:view', function(req, res) {
     var viewId = req.params.view;
     jira.getBacklogForRapidView(viewId, function(error, data) {
-        res.render('rapid-view-monitor',data);
+      if(error){
+        res.send(error);
+      } else{
+        res.render('rapid-view-monitor',{data:dataParser.formatJiraResponse(data)});
+      }
+
+        //res.send(dataParser.formatJiraResponse(data));
+
+
     })
 
 });

@@ -1,4 +1,186 @@
-<h1>hello</h1>
-{{#each columnsData.columns}}
-{{name}}
-{{/each}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jira Monitor</title>
+    <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css" media="screen" title="no title" charset="utf-8">
+    <style media="screen">
+    .status .status-label, .status .status-summary .status-counter {
+text-transform: uppercase;
+font-weight: 900;
+letter-spacing: 0.2ex;
+font-size: 6.4vmin;
+}
+
+main {
+font: 3vmin/1.2 Montserrat, serif;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+width: 100vw;
+height: 100vh;
+-webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+-webkit-box-align: stretch;
+-webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+        align-items: stretch;
+-webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+box-sizing: border-box;
+}
+
+.status {
+background: #ccd;
+-webkit-box-flex: 1;
+-webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+overflow: hidden;
+margin: 1px;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+        flex-flow: column nowrap;
+-webkit-box-ordinal-group: 101;
+-webkit-order: 100;
+    -ms-flex-order: 100;
+        order: 100;
+}
+.status > * {
+padding: 0.3em;
+}
+.status .status-label {
+-webkit-box-flex: 0;
+-webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+background: rgba(0, 0, 0, 0.1);
+}
+.status .status-summary {
+-webkit-box-flex: 1;
+-webkit-flex: 1 1 100%;
+    -ms-flex: 1 1 100%;
+        flex: 1 1 100%;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+
+}
+.status .status-summary .status-issues {
+-webkit-box-flex: 4;
+-webkit-flex: 4 1 auto;
+    -ms-flex: 4 1 auto;
+        flex: 4 1 auto;
+}
+.status .status-summary .status-issues li:nth-child(n+5){
+display: none;
+}
+.status .status-summary .status-counter {
+font-size: 10.5vmin;
+-webkit-box-flex: 1;
+-webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+text-align: center;
+height: 100%;
+}
+
+#dev {
+-webkit-box-ordinal-group: 2;
+-webkit-order: 1;
+    -ms-flex-order: 1;
+        order: 1;
+-webkit-box-flex: 10;
+-webkit-flex-grow: 10;
+    -ms-flex-positive: 10;
+        flex-grow: 10;
+}
+
+#cr {
+-webkit-box-ordinal-group: 3;
+-webkit-order: 2;
+    -ms-flex-order: 2;
+        order: 2;
+-webkit-box-flex: 10;
+-webkit-flex-grow: 10;
+    -ms-flex-positive: 10;
+        flex-grow: 10;
+}
+
+#test {
+-webkit-box-ordinal-group: 4;
+-webkit-order: 3;
+    -ms-flex-order: 3;
+        order: 3;
+-webkit-box-flex: 10;
+-webkit-flex-grow: 10;
+    -ms-flex-positive: 10;
+        flex-grow: 10;
+}
+
+#todo {
+-webkit-box-ordinal-group: 201;
+-webkit-order: 200;
+    -ms-flex-order: 200;
+        order: 200;
+}
+
+[data-status=default] {
+background: #ccd;
+}
+
+[data-status=empty] {
+background: #ccc;
+}
+
+[data-status=full] {
+background: #c50;
+}
+
+[data-status=overloaded] {
+background: #f00;
+}
+.user-avatar{
+  width:3vmin;
+  height:3vmin;
+  display:inline-block;
+  vertical-align: bottom;
+  text-align:center;
+  border-radius:1vmin;
+}
+    </style>
+  </head>
+  <body>
+    <main>
+      {{#each data}}
+      <article class="status">
+        <header class="status-label">
+          {{name}} {{issuesCount}}</header>
+        <section class="status-summary">
+          <span class="status-counter">{{issuesCount}}</span>
+          <ul class="status-issues">
+            {{#each issues}}
+              <li>
+                <img src="{{priorityUrl}}" alt="{{priorityName}}" /> {{key}}
+            {{/each}}
+
+          </ul>
+        </section>
+      </article>
+
+
+    {{/each}}
+    </main>
+</body>
+</html>
